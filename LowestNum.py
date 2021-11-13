@@ -40,4 +40,10 @@ def Get_lowest_(FNum, Snum, ThNum):
 First, Second, Third = Usr_inpt()
 LowestVal = str(Get_lowest_(First, Second, Third))
 
-print(LowestVal)
+wholeVal, fractionVal = LowestVal.split(".")
+
+if int(fractionVal) == 0:
+    print(f"\n{wholeVal}")
+elif int(fractionVal) > 0:
+    Fnl_LowestVal = float(LowestVal)
+    print(f"\n{Fnl_LowestVal}")
