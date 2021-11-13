@@ -4,14 +4,12 @@ def Usr_inpt():
             Numb01 = input("\nEnter first number: ")
             if Numb01.replace(".","").isdigit() == True:
                 Fnl_01 = float(Numb01)
-                pass
                 while True:
-                    Numb02 = input("Enter second number: ")
+                    Numb02 = input("\nEnter second number: ")
                     if Numb02.replace(".","").isdigit() == True:
                         Fnl_02 = float(Numb02)
-                        pass
                         while True:
-                            Numb03 = input("Enter third number: ")
+                            Numb03 = input("\nEnter third number: ")
                             if Numb03.replace(".","").isdigit() == True:
                                 Fnl_03 = float(Numb03)
                                 return Fnl_01, Fnl_02, Fnl_03
@@ -24,20 +22,22 @@ def Usr_inpt():
 
 def Get_lowest_(FNum, Snum, ThNum):
     if (FNum < Snum) and (FNum < ThNum):
-        print(FNum)
+        return FNum
     elif (Snum < FNum) and (Snum < ThNum):
-        print(Snum)
+        return Snum
     elif (ThNum < FNum) and (ThNum < Snum):
-        print(ThNum)
+        return ThNum
     elif (ThNum == FNum) and (ThNum == Snum):
-        print(FNum)
+        return FNum
     else: #Accepts inputs with alike values and still solve for the lowest value
         if (FNum == Snum) or (FNum == ThNum):
-            print(FNum)
+            return FNum
         elif (Snum == FNum) or (Snum == ThNum):
-            print(Snum)
+            return Snum
         elif (ThNum == FNum) or (ThNum == Snum):
-            print(ThNum)
+            return ThNum
 
 First, Second, Third = Usr_inpt()
-Get_lowest_(First, Second, Third)
+LowestVal = str(Get_lowest_(First, Second, Third))
+
+print(LowestVal)
