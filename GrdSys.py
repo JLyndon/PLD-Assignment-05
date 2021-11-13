@@ -1,29 +1,44 @@
-init_grade = int(input("Enter Grade: "))
+import math
+def Rounder_(InputGrade):
+    whole, decimal = InputGrade.split(".")
+    if (int(decimal) >= 0):
+        if int(decimal[0]) >= 5:
+            roundedup_equival = math.ceil(float(InputGrade))
+            return roundedup_equival
+        elif int(decimal[0]) < 5:
+            roundeddown_equival = math.floor(float(InputGrade))
+            return roundeddown_equival
+    elif (int(decimal) == 0):
+        return whole
 
-#Initial Program - Accepts only whole number inputs
-if init_grade >= 97 and init_grade <= 100:
-    print("Grade/Mark: 1.0\nDescription: Excellent")
-elif init_grade >= 94 and init_grade <= 96:
-    print("Grade/Mark: 1.25\nDescription: Excellent")
-elif init_grade >= 91 and init_grade <= 93:
-    print("Grade/Mark: 1.50\nDescription: Very Good")
-elif init_grade >= 88 and init_grade <= 90:
-    print("Grade/Mark: 1.75\nDescription: Very Good")
-elif init_grade >= 85 and init_grade <= 87:
-    print("Grade/Mark: 2.0\nDescription: Good")
-elif init_grade >= 82 and init_grade <= 84:
-    print("Grade/Mark: 2.25\nDescription: Good")
-elif init_grade >= 79 and init_grade <= 81:
-    print("Grade/Mark: 2.5\nDescription: Satisfactory")
-elif init_grade >= 76 and init_grade <= 78:
-    print("Grade/Mark: 2.75\nDescription: Satisfactory")
-elif init_grade == 75:
-    print("Grade/Mark: 3.0\nDescription: Passing")
-elif init_grade >= 65 and init_grade <= 74:
-    print("Grade/Mark: 5.0\nDescription: Failure")
-else:
-    #If-else statements for Inc, Withdrawn, and Dropped
-    print("")
+def GradeClassifier(GradeReference):
+    if GradeReference >= 97 and GradeReference <= 100:
+        print("Grade/Mark: 1.0\nDescription: Excellent")
+    elif GradeReference >= 94 and GradeReference <= 96:
+        print("Grade/Mark: 1.25\nDescription: Excellent")
+    elif GradeReference >= 91 and GradeReference <= 93:
+        print("Grade/Mark: 1.50\nDescription: Very Good")
+    elif GradeReference >= 88 and GradeReference <= 90:
+        print("Grade/Mark: 1.75\nDescription: Very Good")
+    elif GradeReference >= 85 and GradeReference <= 87:
+        print("Grade/Mark: 2.0\nDescription: Good")
+    elif GradeReference >= 82 and GradeReference <= 84:
+        print("Grade/Mark: 2.25\nDescription: Good")
+    elif GradeReference >= 79 and GradeReference <= 81:
+        print("Grade/Mark: 2.5\nDescription: Satisfactory")
+    elif GradeReference >= 76 and GradeReference <= 78:
+        print("Grade/Mark: 2.75\nDescription: Satisfactory")
+    elif GradeReference == 75:
+        print("Grade/Mark: 3.0\nDescription: Passing")
+    elif GradeReference >= 65 and GradeReference <= 74:
+        print("Grade/Mark: 5.0\nDescription: Failure")
+    else:
+        #If-else statements for Inc, Withdrawn, and Dropped
+        if GradeReference == "":
+            print("")
+
+init_grade = input("Enter Grade: ")
+GradeClassifier(Rounder_(init_grade))
 
 # program #2: grading
 # grade/mark    percentage     description
