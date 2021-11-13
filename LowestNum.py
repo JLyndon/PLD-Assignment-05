@@ -1,34 +1,42 @@
-def CommaReader_Single(StringVal):
+def CommaReader_Single(StringVal): #Remodeled version of previous CommaReader code block.
     if "," in StringVal:
         CommaOmmi = StringVal.replace(",","")
         return CommaOmmi
     else:
         return StringVal
 
+def Validation(UsrInput):
+    if UsrInput.isalpha() == True:
+        return print("Input must be a number.")
+    elif UsrInput.isdigit() == True:
+        return print("Input must be in numerical form.")
+    elif UsrInput.isalnum() == True:
+        return print("Input must be only numbers.")
+
 def Usr_inpt():
     while True: #Added conditions for input validation. Accepts decimal inputs.
         while True:
-            Numb01 = input("\nEnter first number: ")
-            DCNumb01 = CommaReader_Single(Numb01)
-            if DCNumb01.replace(".","").isdigit() == True:
+            Numb01 = input("\nEnter first number: ") #Accepts 'with comma' inputs. 
+            DCNumb01 = CommaReader_Single(Numb01) #Checks for comma and omit for further processing.
+            if DCNumb01.replace(".","").isdecimal() == True: 
                 Fnl_01 = float(DCNumb01)
                 while True:
                     Numb02 = input("\nEnter second number: ")
                     DCNumb02 = CommaReader_Single(Numb02)
-                    if DCNumb02.replace(".","").isdigit() == True:
+                    if DCNumb02.replace(".","").isdecimal() == True:
                         Fnl_02 = float(DCNumb02)
                         while True:
                             Numb03 = input("\nEnter third number: ")
                             DCNumb03 = CommaReader_Single(Numb03)
-                            if DCNumb03.replace(".","").isdigit() == True:
+                            if DCNumb03.replace(".","").isdecimal() == True:
                                 Fnl_03 = float(DCNumb03)
                                 return Fnl_01, Fnl_02, Fnl_03
                             else:
-                                print("Enter valid characters.")
+                                Validation(DCNumb03)
                     else:
-                        print("Enter valid characters.")
+                        Validation(DCNumb02)
             else:
-                print("Enter valid characters.")
+                Validation(DCNumb01)
 
 def Get_lowest_(FNum, Snum, ThNum):
     if (FNum < Snum) and (FNum < ThNum):
@@ -39,7 +47,7 @@ def Get_lowest_(FNum, Snum, ThNum):
         return ThNum
     elif (ThNum == FNum) and (ThNum == Snum):
         return FNum
-    else: #Accepts inputs with alike values and still solve for the lowest value
+    else: #Accepts inputs with alike values and still solve for the lowest value.
         if (FNum == Snum) or (FNum == ThNum):
             return FNum
         elif (Snum == FNum) or (Snum == ThNum):
@@ -50,10 +58,13 @@ def Get_lowest_(FNum, Snum, ThNum):
 First, Second, Third = Usr_inpt()
 LowestVal = str(Get_lowest_(First, Second, Third))
 
-wholeVal, fractionVal = LowestVal.split(".")
+wholeVal, fractionVal = LowestVal.split(".") #Splits the string into two.
 
-if int(fractionVal) == 0:
-    print(f"\n{wholeVal:,}")
+if int(fractionVal) == 0: #Statements that evaluate the eligibility for display.
+    if len(wholeVal) >= 4:
+        print(f"\n{wholeVal:,}")
+    else:
+        print(f"\n{wholeVal}")
 elif int(fractionVal) > 0:
     Fnl_LowestVal = float(LowestVal)
     print(f"\n{Fnl_LowestVal:,}")
