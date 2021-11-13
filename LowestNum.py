@@ -1,10 +1,22 @@
 def Usr_inpt():
-    Numb01 = int(input("Enter first number: "))
-    Numb02 = int(input("Enter second number: "))
-    Numb03 = int(input("Enter third number: "))
-    return Numb01, Numb02, Numb03
+    while True: #Added conditions for input validation. Accepts decimal inputs.
+        Numb01 = input("\nEnter first number: ")
+        if Numb01.replace(".","").isdigit() == True:
+            Fnl_01 = float(Numb01)
+            Numb02 = input("Enter second number: ")
+            if Numb02.replace(".","").isdigit() == True:
+                Fnl_02 = float(Numb02)
+                Numb03 = input("Enter third number: ")
+                if Numb03.replace(".","").isdigit() == True:
+                    Fnl_03 = float(Numb03)
+                    return Fnl_01, Fnl_02, Fnl_03
+                else:
+                    print("Enter valid characters.")
+            else:
+                print("Enter valid characters.")
+        else:
+            print("Enter valid characters.")
 
-#Accepts inputs with int val
 def Get_lowest_(FNum, Snum, ThNum):
     if (FNum < Snum) and (FNum < ThNum):
         print(FNum)
