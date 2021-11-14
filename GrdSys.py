@@ -1,4 +1,5 @@
 import math
+import time
 def Rounder_(InputGrade):
     if "." not in InputGrade:
         return int(InputGrade)
@@ -36,9 +37,37 @@ def GradeClassifier(GradeReference):
     elif GradeReference >= 65 and GradeReference <= 74:
         return print("Grade/Mark: 5.0\nDescription: Failure")
     else:
-        return print(f"The rating is unavailable for the grade {GradeReference}.")
+        return print(f"The rating is unavailable for the grade {init_grade}.")
+
+def UnivGradeClassifier(FlatGrade, Decimals):
+    if FlatGrade == "1":
+        if (Decimals == None) or (int(Decimals) == 0):
+            print("Percentage Range: 97-100\nDescription: Excellent")
+        elif Decimals == "25":
+            print("Percentage Range: 94-96\nDescription: Excellent")
+        elif (Decimals == "50") or (Decimals == "5"):
+            print("Percentage Range: 91-93\nDescription: Very Good")
+        elif Decimals == "75":
+            print("Percentage Range: 88-90\nDescription: Very Good")
+    elif FlatGrade == "2":
+        if (Decimals == None) or (int(Decimals) == 0):
+            print("Percentage Range: 85-89\nDescription: Good")
+        elif Decimals == "25":
+            print("Percentage Range: 79-81\nDescription: Good")
+        elif (Decimals == "50") or (Decimals == "5"):
+            print("Percentage Range: 76-78\nDescription: Satisfactory")
+        elif Decimals == "75":
+            print("Percentage Range: 76-78\nDescription: Satisfactory")
+    elif FlatGrade == "3":
+        if (Decimals == None) or (int(Decimals) == 0):
+            print("Percentage Range: 75\nDescription: Passing")
+    elif FlatGrade == "5":
+        if (Decimals == None) or (int(Decimals) == 0):
+            print("Percentage Range: 65-74\nDescription: Failure")
+
 
 def DecisionMenu():
+    global init_grade
     print("Welcome to Grade Checker!\n\nPlease choose from the following actions:\nType\n1 - To check grades in scale of 1-100\n2 - To check grades in scale of 1.0-5.0\n3 - To view grades with specified Remarks\nexit - To exit the program")
     while True:
         Usr_decision = input("\n> ")
@@ -48,16 +77,20 @@ def DecisionMenu():
                 init_grade = input("\nEnter Grade: ")
                 if init_grade.replace(".","").isdecimal() == True:
                     GradeClassifier(Rounder_(init_grade))
+                elif init_grade.lower() == "back":
+                    time.sleep(2)
+                    print("\n\nWelcome back to the Main Menu!\n\nPlease choose from the following actions:\nType\n1 - To check grades in scale of 1-100\n2 - To check grades in scale of 1.0-5.0\n3 - To view grades with specified Remarks\nexit - To exit the program")
+                    break
                 elif init_grade.isalpha() == True:
-                    print("Please enter a numeric grade.")
+                    print("Please enter a numeric value.")
                 elif init_grade.isalnum() == True:
                     print("Inputs must be numbers only.")
                 else:
                     print("Please enter a valid input.")
         elif Usr_decision == "2":
-            init_grade = input("Enter Grade: ")
+            secon_grade = input("Enter Grade: ")
         elif Usr_decision == "3":
-            init_grade = input("Enter Grade: ")
+            tert_grade = input("Enter Grade: ")
         elif Usr_decision.lower() == "exit":
             print("Thank you for stopping by! Have a great day :)")
             break
