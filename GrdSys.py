@@ -65,6 +65,23 @@ def UnivGradeClassifier(FlatGrade, Decimals):
         if (Decimals == None) or (int(Decimals) == 0):
             print("Percentage Range: 65-74\nDescription: Failure")
 
+def ValidationResponse(StringVal):
+    if StringVal.lower() == "back":
+        time.sleep(2)
+        print("\n\nWelcome back to the Main Menu!\n\nPlease choose from the following actions:\nType\n1 - To check grades in scale of 1-100\n2 - To check grades in scale of 1.0-5.0\n3 - To view grades with specified Remarks\nexit - To exit the program")
+        return "return_menu"
+    elif StringVal.replace(".","").lower() == "inc":
+        return print("Percentage Range: N/A\nDescription: Incomplete")
+    elif StringVal.replace(".","").upper() == "W":
+        return print("Percentage Range: N/A\nDescription: Withdrawn")
+    elif StringVal.replace(".","").upper() == "D":
+        return print("Percentage Range: N/A\nDescription: Dropped")
+    elif StringVal.isalpha() == True:
+        return print("Please enter a numeric value.")
+    elif StringVal.isalnum() == True:
+        return print("Inputs must be numbers only.")
+    else:
+        return print("Please enter a valid input.")
 
 def DecisionMenu():
     global init_grade
@@ -77,18 +94,26 @@ def DecisionMenu():
                 init_grade = input("\nEnter Grade: ")
                 if init_grade.replace(".","").isdecimal() == True:
                     GradeClassifier(Rounder_(init_grade))
-                elif init_grade.lower() == "back":
-                    time.sleep(2)
-                    print("\n\nWelcome back to the Main Menu!\n\nPlease choose from the following actions:\nType\n1 - To check grades in scale of 1-100\n2 - To check grades in scale of 1.0-5.0\n3 - To view grades with specified Remarks\nexit - To exit the program")
-                    break
-                elif init_grade.isalpha() == True:
-                    print("Please enter a numeric value.")
-                elif init_grade.isalnum() == True:
-                    print("Inputs must be numbers only.")
                 else:
-                    print("Please enter a valid input.")
+                    if (ValidationResponse(init_grade)) == "return_menu":
+                        break
+                    else:
+                        pass
         elif Usr_decision == "2":
-            secon_grade = input("Enter Grade: ")
+            print("Type 'back' - To return to the main menu")
+            while True:
+                secon_grade = input("Enter Grade: ")
+                if secon_grade.replace(".","").isdecimal() == True:
+                    if "." not in secon_grade:
+                        UnivGradeClassifier(secon_grade[-1], None)
+                    else:
+                        Whole, Fraction = secon_grade.split(".")
+                        UnivGradeClassifier(Whole[0], Fraction[0:2])
+                else:
+                    if (ValidationResponse(secon_grade)) == "return_menu":
+                        break
+                    else:
+                        pass
         elif Usr_decision == "3":
             tert_grade = input("Enter Grade: ")
         elif Usr_decision.lower() == "exit":
