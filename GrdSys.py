@@ -176,6 +176,7 @@ def DecisionMenu():
                     TransactionNo = 0
         elif Usr_decision == "3":
             print("Type 'back' - To return to the main menu")
+            print("\nRemarks:\n Excellent\n Very Good\n Good\n Satisfactory\n Passing\n Failure\n Incomplete\n Withdrawn\n Dropped")
             while True:
                 tert_grade = input("\nEnter Remarks: ").capitalize()
                 TransactionNo += 1
@@ -197,7 +198,7 @@ def DecisionMenu():
                         TransactionNo = 0
                         TransactionLimit += 1
                         time.sleep(1)
-                        print("\n\nType 'back' - To return to the main menu\nEnter a value - To proceed\n")
+                        print("\n\nType 'back' - To return to the main menu\nEnter a Remark - To proceed\n\nRemarks:\n Excellent      Very Good\n Good           Satisfactory\n Passing        Failure\n Incomplete     Withdrawn\n Dropped")
                 elif TransactionNo > TransactionLimit:
                         TransactionNo = 0
         elif Usr_decision.lower() == "exit":
