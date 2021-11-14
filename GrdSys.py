@@ -35,9 +35,34 @@ def GradeClassifier(GradeReference):
         return print("Grade/Mark: 3.0\nDescription: Passing")
     elif GradeReference >= 65 and GradeReference <= 74:
         return print("Grade/Mark: 5.0\nDescription: Failure")
+    else:
+        return print(f"The rating is unavailable for the grade {GradeReference}.")
 
-init_grade = input("Enter Grade: ")
-GradeClassifier(Rounder_(init_grade))
+def DecisionMenu():
+    print("Welcome to Grade Checker!\n\nPlease choose from the following actions:\nType\n1 - To check grades in scale of 1-100\n2 - To check grades in scale of 1.0-5.0\n3 - To view grades with specified Remarks\nexit - To exit the program")
+    while True:
+        Usr_decision = input("\n> ")
+        if Usr_decision == "1":
+            print("Type 'back' - To return to the main menu")
+            while True:
+                init_grade = input("\nEnter Grade: ")
+                if init_grade.replace(".","").isdecimal() == True:
+                    GradeClassifier(Rounder_(init_grade))
+                elif init_grade.isalpha() == True:
+                    print("Please enter a numeric grade.")
+                elif init_grade.isalnum() == True:
+                    print("Inputs must be numbers only.")
+                else:
+                    print("Please enter a valid input.")
+        elif Usr_decision == "2":
+            init_grade = input("Enter Grade: ")
+        elif Usr_decision == "3":
+            init_grade = input("Enter Grade: ")
+        elif Usr_decision.lower() == "exit":
+            print("Thank you for stopping by! Have a great day :)")
+            break
+    
+DecisionMenu()
 
 # program #2: grading
 # grade/mark    percentage     description
