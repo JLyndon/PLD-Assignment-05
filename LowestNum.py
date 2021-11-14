@@ -11,19 +11,17 @@ def Validation(UsrInput): #Input Validation Statements
     elif UsrInput.isdigit() == True:
         return print("Input must be in numerical form.")
     elif UsrInput.isalnum() == True:
-        return print("Input must be only numbers.")
+        return print("Input must only be numbers.")
     elif (UsrInput == "") or (UsrInput == None):
         return print("Please enter a number.")
     elif UsrInput.isspace() == True:
         return print("Please fill all the blanks.")
-
 
 def Usr_inpt():
     while True: #Added conditions for input validation. Accepts decimal inputs.
         while True:
             Numb01 = input("\nEnter first number: ") #Accepts 'with comma' inputs. 
             DCNumb01 = CommaReader_Single(Numb01) #Checks for comma and omit for further processing.
-            
             if DCNumb01.replace(".","").replace("-","").isdecimal() == True: 
                 Fnl_01 = float(DCNumb01)
                 while True:
