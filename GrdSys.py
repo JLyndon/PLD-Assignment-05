@@ -56,11 +56,11 @@ def UnivGradeClassifier(FlatGrade, Decimals):
                 return print(f"There's no available rating for the grade of '{secon_grade}'")
         elif FlatGrade == "2":
             if (Decimals == None) or (int(Decimals) == 0):
-                print("Percentage Range: 85-89\nDescription: Good")
+                print("Percentage Range: 85-87\nDescription: Good")
             elif Decimals == "25":
-                print("Percentage Range: 79-81\nDescription: Good")
+                print("Percentage Range: 82-84\nDescription: Good")
             elif (Decimals == "50") or (Decimals == "5"):
-                print("Percentage Range: 76-78\nDescription: Satisfactory")
+                print("Percentage Range: 79-81\nDescription: Satisfactory")
             elif Decimals == "75":
                 print("Percentage Range: 76-78\nDescription: Satisfactory")
             else:
@@ -75,9 +75,33 @@ def UnivGradeClassifier(FlatGrade, Decimals):
                 print("Percentage Range: 65-74\nDescription: Failure")
             else:
                 return print(f"There's no available rating for the grade of '{secon_grade}'")
+        else:
+            return print(f"There's no available rating for the grade of '{secon_grade}'")
     elif (int(FlatGrade) < 0) or (int(FlatGrade) > 5):
         return print("The Grading System has its standard scale (1.0-3.0 & 5.0). Please, be guided accordingly.")
 
+def RemarksGradeEquival(RemarkReference):
+    if RemarkReference == "Excellent":
+        return print("\n'Excellent' Remarks can be earned by obtaining a grade within:\nPercentage Range: 94-100\nGrades/Mark: 1.25-1.0")
+    elif RemarkReference == "Very Good":
+        return print("\n'Very Good' Remarks can be earned by obtaining a grade within:\nPercentage Range: 88-93\nGrades/Mark: 1.5-1.75")
+    elif RemarkReference == "Good":
+        return print("\n'Good' Remarks can be earned by obtaining a grade within:\nPercentage Range: 82-87\nGrades/Mark: 2.25-2.0")
+    elif RemarkReference == "Satisfactory":
+        return print("\n'Satisfactory' Remarks can be earned by obtaining a grade within:\nPercentage Range: 76-81\nGrades/Mark: 2.50-2.75")
+    elif RemarkReference == "Passing":
+        return print("\n'Passing' Remarks can be earned by obtaining a grade of:\nPercentage: 75\nGrades/Mark: 3.0")
+    elif RemarkReference == "Failure":
+        return print("\n'Failure' Remarks can be earned by obtaining a grade of:\nPercentage Range: 65-74\nGrades/Mark: 5.0")
+    elif RemarkReference.replace(".","") == "Incomplete":
+        return print("Percentage Range: N/A\nGrades/Mark: Inc")
+    elif RemarkReference.replace(".","") == "Withdrawn":
+        return print("Percentage Range: N/A\nGrades/Mark: W")
+    elif RemarkReference.replace(".","") == "Dropped":
+        return print("Percentage Range: N/A\nGrades/Mark: D")
+    else:
+        return print(f"There's no equivalent rating for '{RemarkReference}'")
+    
 def ValidationResponse(StringVal):
     if StringVal.lower() == "back":
         time.sleep(2)
@@ -113,22 +137,25 @@ def DecisionMenu():
             while True:
                 init_grade = input("\nEnter Grade: ")
                 TransactionNo += 1
+                if init_grade.replace(".","").isdecimal() == True:
+                    GradeClassifier(Rounder_(init_grade))
+                else:
+                    if (ValidationResponse(init_grade)) == "return_menu":
+                        break
+                    else:
+                        pass
                 if TransactionNo == TransactionLimit:
                     TransactionNo = 0
                     TransactionLimit += 1
+                    time.sleep(1)
                     print("\n\nType 'back' - To return to the main menu\nEnter a value - To proceed\n")
-                else:
-                    if init_grade.replace(".","").isdecimal() == True:
-                        GradeClassifier(Rounder_(init_grade))
-                    else:
-                        if (ValidationResponse(init_grade)) == "return_menu":
-                            break
-                        else:
-                            pass
+                elif TransactionNo > TransactionLimit:
+                    TransactionNo = 0
         elif Usr_decision == "2":
             print("Type 'back' - To return to the main menu")
             while True:
                 secon_grade = input("\nEnter Grade: ")
+                TransactionNo += 1
                 if secon_grade.replace(".","").isdecimal() == True:
                     if "." not in secon_grade:
                         UnivGradeClassifier(secon_grade, None)
@@ -140,8 +167,39 @@ def DecisionMenu():
                         break
                     else:
                         pass
+                if TransactionNo == TransactionLimit:
+                    TransactionNo = 0
+                    TransactionLimit += 1
+                    time.sleep(1)
+                    print("\n\nType 'back' - To return to the main menu\nEnter a value - To proceed\n")
+                elif TransactionNo > TransactionLimit:
+                    TransactionNo = 0
         elif Usr_decision == "3":
-            tert_grade = input("Enter Grade: ")
+            print("Type 'back' - To return to the main menu")
+            while True:
+                tert_grade = input("\nEnter Remarks: ").capitalize()
+                TransactionNo += 1
+                if tert_grade.lower() == "back":
+                    time.sleep(2)
+                    print("\n\nWelcome back to the Main Menu!\n\nPlease choose from the following actions:\nType\n1 - To check grades in scale of 1-100\n2 - To check grades in scale of 1.0-5.0\n3 - To view grades with specified Remarks\nexit - To exit the program")
+                    break
+                elif tert_grade.lower() == "exit":
+                    print("To exit, type 'back' and return to the main menu.")
+                elif tert_grade.isalpha() == True:
+                    RemarksGradeEquival(tert_grade)
+                elif tert_grade.isdecimal() == True:
+                    print("Input must be a word.")
+                elif tert_grade.isalnum() == True:
+                    print("Inputs must contain alphabetic characters only.")
+                else:
+                    print("Please enter a valid input.")
+                if TransactionNo == TransactionLimit:
+                        TransactionNo = 0
+                        TransactionLimit += 1
+                        time.sleep(1)
+                        print("\n\nType 'back' - To return to the main menu\nEnter a value - To proceed\n")
+                elif TransactionNo > TransactionLimit:
+                        TransactionNo = 0
         elif Usr_decision.lower() == "exit":
             print("Thank you for stopping by! Have a great day :)")
             break
