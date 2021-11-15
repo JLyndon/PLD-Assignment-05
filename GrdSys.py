@@ -5,7 +5,9 @@ def Rounder_(InputGrade):
         return int(InputGrade)
     else:
         whole, decimal = InputGrade.split(".")
-        if (int(decimal) >= 0):
+        if (decimal == "") or (decimal == None):
+            return int(whole)
+        elif (int(decimal) >= 0):
             if int(decimal[0]) >= 5:
                 roundedup_equival = math.ceil(float(InputGrade))
                 return roundedup_equival
@@ -44,7 +46,7 @@ def GradeClassifier(GradeReference):
 def UnivGradeClassifier(FlatGrade, Decimals):
     if (int(FlatGrade) >= 0) and (int(FlatGrade) <= 5):
         if FlatGrade == "1":
-            if (Decimals == None) or (int(Decimals) == 0):
+            if ((Decimals == "") or (Decimals == None)) or (int(Decimals) == 0):
                 print("Percentage Range: 97-100\nDescription: Excellent")
             elif Decimals == "25":
                 print("Percentage Range: 94-96\nDescription: Excellent")
@@ -55,7 +57,7 @@ def UnivGradeClassifier(FlatGrade, Decimals):
             else:
                 return print(f"There's no available rating for the grade of '{secon_grade}'")
         elif FlatGrade == "2":
-            if (Decimals == None) or (int(Decimals) == 0):
+            if ((Decimals == "") or (Decimals == None)) or (int(Decimals) == 0):
                 print("Percentage Range: 85-87\nDescription: Good")
             elif Decimals == "25":
                 print("Percentage Range: 82-84\nDescription: Good")
@@ -66,12 +68,12 @@ def UnivGradeClassifier(FlatGrade, Decimals):
             else:
                 return print(f"There's no available rating for the grade of '{secon_grade}'")
         elif FlatGrade == "3":
-            if (Decimals == None) or (int(Decimals) == 0):
+            if ((Decimals == "") or (Decimals == None)) or (int(Decimals) == 0):
                 print("Percentage Range: 75\nDescription: Passing")
             else:
                 return print(f"There's no available rating for the grade of '{secon_grade}'")
         elif FlatGrade == "5":
-            if (Decimals == None) or (int(Decimals) == 0):
+            if ((Decimals == "") or (Decimals == None)) or (int(Decimals) == 0):
                 print("Percentage Range: 65-74\nDescription: Failure")
             else:
                 return print(f"There's no available rating for the grade of '{secon_grade}'")
