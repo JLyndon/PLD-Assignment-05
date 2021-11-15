@@ -13,5 +13,20 @@ def DetermineLifeStage(Usr_Age):
                 else:
                     print("Enter a valid age.")
 
-age = int(input("Enter age: "))
-DetermineLifeStage(age)
+while True:
+    age = input("\nEnter age: ")
+    if age.isalpha() == True:
+        print("Input must be a number.")
+    elif age.isdecimal() == True:
+        ConventionalAge = int(age)
+        DetermineLifeStage(ConventionalAge)
+        break
+    elif "." in age:
+        if age.replace(".","").isdecimal() == True:
+            DecimalAge = float(age)
+            DetermineLifeStage(DecimalAge)
+            break
+    elif age.isalnum() == True:
+        print("Input must only consist of numbers.")
+    else:
+        print("Please enter a valid age.")
