@@ -16,6 +16,8 @@ def Validation(UsrInput): #Input Validation Statements
         return print("Please enter a number.")
     elif UsrInput.isspace() == True:
         return print("Please fill all the blanks.")
+    else:
+        print("Please enter a valid input.")
 
 def Usr_inpt():
     while True: #Added conditions for input validation. Accepts decimal inputs.
@@ -68,7 +70,7 @@ if int(fractionVal) == 0: #Statements that evaluate the eligibility for display.
     if (wholeVal.replace("-","").__len__()) >= 4:
         print(f"\n{wholeVal:,}")
     else:
-        print(f"\n{wholeVal}")
+        print(f"\nThe lowest value of the three is '{wholeVal}'")
 elif int(fractionVal) > 0:
     Fnl_LowestVal = float(LowestVal)
-    print(f"\n{Fnl_LowestVal:,}")
+    print(f"\nThe lowest value of three is '{Fnl_LowestVal:,}'")
