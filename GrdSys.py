@@ -1,7 +1,23 @@
 import math
 import time
-def Rounder_(InputGrade):
-    if "." not in InputGrade:
+
+# Grade/Mark   Percentage      Description
+# 1.0           97-100          Excellent
+# 1.25          94-96           Excellent
+# 1.5           91-93           Very Good
+# 1.75          88-90           Very Good
+# 2.0           85-87           Good
+# 2.25          82-84           Good
+# 2.50          79-81           Satisfactory
+# 2.75          76-78           Satisfactory
+# 3.0           75              Passing
+# 5.0           65-74           Failure
+# Inc.                          Incomplete
+# W                             Withdrawn
+# D                             Dropeed
+
+def Rounder_(InputGrade): #Evaluates digit string for rounding up/down float values; return an equivalent
+    if "." not in InputGrade: # value for GradeReference.
         return int(InputGrade)
     else:
         whole, decimal = InputGrade.split(".")
@@ -17,7 +33,7 @@ def Rounder_(InputGrade):
         elif (int(decimal) == 0):
             return whole
 
-def GradeClassifier(GradeReference):
+def GradeClassifier(GradeReference): #First Operator Function - Evaluates Percentage based inputs.
     if GradeReference >= 97 and GradeReference <= 100:
         return print("Grade/Mark: 1.0\nDescription: Excellent")
     elif GradeReference >= 94 and GradeReference <= 96:
@@ -43,7 +59,7 @@ def GradeClassifier(GradeReference):
     else:
         return print(f"There's no available rating for the grade of '{init_grade}'")
 
-def UnivGradeClassifier(FlatGrade, Decimals):
+def UnivGradeClassifier(FlatGrade, Decimals): #Second Operator Function - Evaluates Grades/Marks based inputs.
     if (int(FlatGrade) >= 0) and (int(FlatGrade) <= 5):
         if FlatGrade == "1":
             if ((Decimals == "") or (Decimals == None)) or (int(Decimals) == 0):
@@ -82,8 +98,8 @@ def UnivGradeClassifier(FlatGrade, Decimals):
     elif (int(FlatGrade) < 0) or (int(FlatGrade) > 5):
         return print("The Grading System has its standard scale (1.0-3.0 & 5.0). Please, be guided accordingly.")
 
-def RemarksGradeEquival(RemarkReference):
-    if RemarkReference == "Excellent":
+def RemarksGradeEquival(RemarkReference): # Third Operator Function - Evaluates Remarks based inputs and display its equivalent
+    if RemarkReference == "Excellent":    # grade/range.
         return print("\n'Excellent' Remarks can be earned by obtaining a grade within:\nPercentage Range: 94-100\nGrades/Mark: 1.25-1.0")
     elif RemarkReference == "Very Good":
         return print("\n'Very Good' Remarks can be earned by obtaining a grade within:\nPercentage Range: 88-93\nGrades/Mark: 1.5-1.75")
@@ -104,7 +120,7 @@ def RemarksGradeEquival(RemarkReference):
     else:
         return print(f"There's no equivalent rating for '{RemarkReference}'")
     
-def ValidationResponse(StringVal):
+def ValidationResponse(StringVal): # Validation Statements
     if StringVal.lower() == "back":
         time.sleep(2)
         print("\n\nWelcome back to the Main Menu!\n\nPlease choose from the following actions:\nType\n1 - To check grades in scale of 1-100\n2 - To check grades in scale of 1.0-5.0\n3 - To view grades with specified Remarks\nexit - To exit the program")
@@ -126,7 +142,7 @@ def ValidationResponse(StringVal):
     else:
         return print("Please enter a valid input.")
 
-def DecisionMenu():
+def DecisionMenu(): # Main Function - conducts the Main Menu for separation of operations. 
     global init_grade
     global secon_grade
     print("Welcome to Grade Checker!\n\nPlease choose from the following actions:\nType\n1 - To check grades in scale of 1-100\n2 - To check grades in scale of 1.0-5.0\n3 - To view grades with specified Remarks\nexit - To exit the program")
@@ -146,7 +162,7 @@ def DecisionMenu():
                         break
                     else:
                         pass
-                if TransactionNo == TransactionLimit:
+                if TransactionNo == TransactionLimit: #Queue - Displays User Reminder every interval
                     TransactionNo = 0
                     TransactionLimit += 1
                     time.sleep(1)

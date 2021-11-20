@@ -1,3 +1,8 @@
+# Task: Find the lowest number
+# Create a program that ask 3 numbers. 
+# Find the lowest number using only if-else statement.
+# Display the lowest number
+
 def CommaReader_Single(StringVal): #Remodeled version of previous CommaReader code block.
     if "," in StringVal:
         CommaOmmi = StringVal.replace(",","")
